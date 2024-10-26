@@ -6,6 +6,7 @@ import com.upc.products.services.ProveedorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ProveedorController {
     private ProveedorService proveedorService;
 
     @GetMapping("/proveedores")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<ProveedorDTO> listaProveedores() {
         List<Proveedor> proveedores = proveedorService.listar();
         ModelMapper modelMapper = new ModelMapper();
@@ -27,6 +29,7 @@ public class ProveedorController {
                 .collect(Collectors.toList());
     }
     @PostMapping("/proveedor")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProveedorDTO> adicionaProveedor(@RequestBody ProveedorDTO proveedorDTO) {
         ModelMapper modelMapper = new ModelMapper();
         Proveedor proveedor = modelMapper.map(proveedorDTO, Proveedor.class);

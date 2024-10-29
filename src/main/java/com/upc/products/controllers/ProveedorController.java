@@ -38,6 +38,7 @@ public class ProveedorController {
         return ResponseEntity.ok(proveedorDTO);
     }
     @PutMapping("/proveedor")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProveedorDTO>  editarCliente(@RequestBody ProveedorDTO proveedorDTO) {
         ModelMapper modelMapper = new ModelMapper();
         Proveedor proveedor = modelMapper.map(proveedorDTO, Proveedor.class);
@@ -46,6 +47,7 @@ public class ProveedorController {
         return ResponseEntity.ok(proveedorDTO);
     }
     @DeleteMapping("/proveedor/{id}")
+    @PreAuthorize("hasRole('GERENTE')")
     public void eliminarProveedor(@PathVariable int id) {
         proveedorService.eliminar(id);
     }

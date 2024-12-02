@@ -11,11 +11,11 @@ services:
     depends_on:
       - db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/talkiaTPDB
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=root
+      - POSTGRES_USER= user
+      - POSTGRES_PASSWORD= password
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/exampleDB
+      - SPRING_DATASOURCE_USERNAME=username
+      - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
     ports:
@@ -29,9 +29,9 @@ services:
     networks:
       - my-network-name
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=talkiaTPDB
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=exampleDB
     ports:
       - "5433:5432"
 volumes:
